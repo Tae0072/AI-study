@@ -1,0 +1,13 @@
+package com.example.demo2.board;
+
+import java.util.List;
+import lombok.Data;
+
+public class BoardResponse {
+
+    // RULE: Detail DTO는 상세정보를 저장한다.
+    @Data
+    public static class Detail {
+
+    }
+}
