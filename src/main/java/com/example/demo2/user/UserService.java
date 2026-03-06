@@ -33,4 +33,8 @@ public class UserService {
         return user;
     }
 
+    public Boolean usernameCheck(String username) {
+        Optional<User> userOP = userRepository.findByUsername(username);
+        return userOP.isPresent();
+    }
 }

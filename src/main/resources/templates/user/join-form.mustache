@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+    <h1>회원가입 페이지</h1>
+    <hr>
+    <form action="/join" method="post">
+        <div>
+            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요">
+            <button type="button" onclick="checkUsername()">중복확인</button>
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="비밀번호를 입력하세요">
+        </div>
+        <div>
+            <input type="email" name="email" placeholder="이메일을 입력하세요">
+        </div>
+        <button type="submit" id="btnJoin" disabled>회원가입</button>
+    </form>
+
+    <script>
+        async function checkUsername() {
+            // 1. DOM에서 입력값 수집
+            let username = document.querySelector("#username").value;
+
+            // 2. 입력 검증
+            if (!username) {
+                alert("아이디를 입력해주세요.");
+                return;
+            }
+
+            // 3. API 호출
+            try {
+                let response = await fetch(`/api/users/username-check?username=${username}`);
+                let result = await response.json(); // result = { status, msg, body }
+
+                // 4. 응답 분기 (result.body 기준)
+                // body = true (중복), body = false (사용 가능)
+                if (result.body === true) {
+                    alert("이미 존재하는 아이디입니다.");
+                    document.querySelector("#btnJoin").disabled = true;
+                } else {
+                    alert("사용 가능한 아이디입니다.");
+                    document.querySelector("#btnJoin").disabled = false;
+                }
+            } catch (error) {
+                alert("통신 중 오류가 발생했습니다.");
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
