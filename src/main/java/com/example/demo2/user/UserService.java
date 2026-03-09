@@ -14,11 +14,15 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void 회원가입(String username, String password, String email) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setEmail(email);
+    public void 회원가입(UserRequest.Join reqDTO) {
+        User user = User.builder()
+                .username(reqDTO.getUsername())
+                .password(reqDTO.getPassword())
+                .email(reqDTO.getEmail())
+                .zipcode(reqDTO.getZipcode())
+                .address(reqDTO.getAddress())
+                .detailAddress(reqDTO.getDetailAddress())
+                .build();
         userRepository.save(user);
     }
 
