@@ -1,10 +1,3 @@
-# 코드 컨벤션
-
-이 프로젝트의 소스 파일을 생성하거나 수정할 때 반드시 이 컨벤션을 따른다.
-각 레이어의 상세 코드 템플릿과 예시는 `_docs/.ai/skill/` 폴더의 해당 skill을 참조한다.
-
----
-
 ## 패키지 구조
 
 도메인 기반 플랫 구조를 사용한다. 레이어 기반 구조는 절대 사용하지 않는다.
@@ -26,12 +19,12 @@ com.example.demo/
 
 ## 어노테이션 순서
 
-| 레이어         | 순서                                                                        |
-| -------------- | --------------------------------------------------------------------------- |
+| 레이어         | 순서                                                                         |
+| -------------- | ---------------------------------------------------------------------------- |
 | Entity         | `@NoArgsConstructor` → `@Data` → `@Entity` → `@Table(name = "{도메인}_tb")` |
-| Service        | `@Transactional(readOnly = true)` → `@RequiredArgsConstructor` → `@Service` |
-| Controller     | `@RequiredArgsConstructor` → `@Controller`                                  |
-| RestController | `@RequiredArgsConstructor` → `@RestController` (별도 파일, `/api` 접두사)   |
+| Service        | `@Transactional(readOnly = true)` → `@RequiredArgsConstructor` → `@Service`  |
+| Controller     | `@RequiredArgsConstructor` → `@Controller`                                   |
+| RestController | `@RequiredArgsConstructor` → `@RestController` (별도 파일, `/api` 접두사)    |
 
 ---
 
@@ -95,24 +88,24 @@ com.example.demo/
 
 ## 네이밍
 
-| 대상                 | 컨벤션             | 예시                             |
-| -------------------- | ------------------ | -------------------------------- |
-| 클래스/파일          | PascalCase         | `BoardService`                   |
-| 메서드/변수          | camelCase          | `findAll`                        |
-| 테이블               | snake_case + `_tb` | `board_tb`                       |
-| 패키지               | lowercase          | `board`, `_core`                 |
-| Request 내부 클래스  | 기능명             | `Save`, `Update`, `Login`        |
-| Response 내부 클래스 | 데이터 범위        | `Max`, `Min`, `Detail`, `Option` |
+| 대상                  | 컨벤션       | 예시                             |
+| --------------------- | ------------ | -------------------------------- |
+| 클래스/파일           | PascalCase   | `BoardService`                   |
+| 메서드/변수           | camelCase    | `findAll`                        |
+| 테이블                | snake_case + `_tb` | `board_tb`                 |
+| 패키지                | lowercase    | `board`, `_core`                 |
+| Request 내부 클래스   | 기능명       | `Save`, `Update`, `Login`        |
+| Response 내부 클래스  | 데이터 범위  | `Max`, `Min`, `Detail`, `Option` |
 
 ---
 
 ## 설정
 
-| 규칙        | 값 / 강제 사항                                        |
-| ----------- | ----------------------------------------------------- |
-| OSIV        | `false` — 절대 활성화하지 않는다                      |
-| Fetch 전략  | 항상 `LAZY` — `EAGER` 금지                            |
-| 배치 사이즈 | `default_batch_fetch_size=10`                         |
-| 인증 방식   | `HttpSession` — 별도 요청 없으면 Spring Security 금지 |
-| DTO 생성    | Service 레이어에서만                                  |
-| Entity 노출 | Controller에 Entity를 절대 전달하지 않는다            |
+| 규칙         | 값 / 강제 사항                                       |
+| ------------ | ---------------------------------------------------- |
+| OSIV         | `false` — 절대 활성화하지 않는다                     |
+| Fetch 전략   | 항상 `LAZY` — `EAGER` 금지                           |
+| 배치 사이즈  | `default_batch_fetch_size=10`                         |
+| 인증 방식    | `HttpSession` — 별도 요청 없으면 Spring Security 금지 |
+| DTO 생성     | Service 레이어에서만                                  |
+| Entity 노출  | Controller에 Entity를 절대 전달하지 않는다            |

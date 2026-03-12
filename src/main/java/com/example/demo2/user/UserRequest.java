@@ -10,13 +10,4 @@ public class UserRequest {
         private String password;
     }
 
-    @Data
-    public static class Join {
-        private String username;
-        private String password;
-        private String email;
-        private String zipcode;
-        private String address;
-        private String detailAddress;
-    }
 }
